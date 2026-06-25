@@ -1,0 +1,10 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Patrick Faustino project portfolio",
+  "scripts": {
+    "dev": "npx serve .",
+    "preview": "npx serve ."
+  }
+}

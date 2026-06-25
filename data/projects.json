@@ -1,0 +1,263 @@
+{
+  "owner": {
+    "name": "Patrick Faustino",
+    "handle": "pfaustino",
+    "bio": "Browser game dev & AI researcher. Vite, Three.js, Pygame.",
+    "github": "https://github.com/pfaustino",
+    "itch": "https://pfaustino.itch.io"
+  },
+  "projects": [
+    {
+      "id": "gigazonk",
+      "name": "GigaZonk",
+      "tagline": "3D horde survival roguelike",
+      "description": "Megabonk energy in 3D: auto-fire chaos, risky Zonk Rifts, and a village hub that remembers your upgrades between runs.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite", "Three.js"],
+      "topics": ["roguelike", "horde-survival", "browser-game"],
+      "updated": "2026-06-25",
+      "links": {
+        "github": "https://github.com/pfaustino/gigazonk",
+        "githubPages": "https://pfaustino.github.io/gigazonk/",
+        "itch": "https://pfaustino.itch.io/gigazonk",
+        "vercel": null
+      }
+    },
+    {
+      "id": "boycott-evil",
+      "name": "Boycott Evil",
+      "tagline": "Ethical product scanner",
+      "description": "Scan barcodes or search products and check whether their brands appear on a boycott list. Client-side TypeScript app — no server required.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite"],
+      "topics": ["scanner", "web-app", "ethics"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/boycott-evil",
+        "githubPages": null,
+        "itch": null,
+        "vercel": "https://boycott-evil.vercel.app"
+      }
+    },
+    {
+      "id": "solar-system-trader",
+      "name": "Solar System Trader",
+      "tagline": "Elite-inspired space trading sim",
+      "description": "Trade goods across a realistic solar system — no hyperspeed jumps. Manage fleets, negotiate markets, and explore orbital mechanics.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite"],
+      "topics": ["space-sim", "trading", "simulation"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/solar-system-trader",
+        "githubPages": "https://pfaustino.github.io/solar-system-trader/",
+        "itch": "https://pfaustino.itch.io/solar-system-trader",
+        "vercel": null
+      }
+    },
+    {
+      "id": "3dfps",
+      "name": "3D FPS",
+      "tagline": "Low-poly browser shooter",
+      "description": "Drive, dive, and survive in a chaotic low-poly first-person shooter. Endless enemy waves in the browser with Three.js.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Three.js"],
+      "topics": ["fps", "browser-game", "threejs"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/3dfps",
+        "githubPages": "https://pfaustino.github.io/3dfps/",
+        "itch": "https://pfaustino.itch.io/zonkify",
+        "vercel": null
+      }
+    },
+    {
+      "id": "mining-coins",
+      "name": "Mining Coins",
+      "tagline": "Browser mining arcade",
+      "description": "A browser arcade game about mining coins. Data-driven balance via JSON, dev panel for tuning, and GitHub Pages auto-deploy.",
+      "category": "game",
+      "status": "active",
+      "featured": false,
+      "stack": ["JavaScript", "Vite"],
+      "topics": ["arcade", "browser-game", "mining"],
+      "updated": "2026-06-25",
+      "links": {
+        "github": "https://github.com/pfaustino/mining-coins",
+        "githubPages": "https://pfaustino.github.io/mining-coins/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "ghouls-n-orcs",
+      "name": "Ghouls n Orcs",
+      "tagline": "2.5D gothic action-platformer",
+      "description": "A punishing Ghosts 'n Goblins-style platformer. Battle undead hordes and brutal orcs across gothic levels with multiple weapons.",
+      "category": "game",
+      "status": "active",
+      "featured": false,
+      "stack": ["JavaScript"],
+      "topics": ["platformer", "retro", "browser-game"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/ghouls-n-orcs",
+        "githubPages": null,
+        "itch": "https://pfaustino.itch.io/ghouls-n-orcs",
+        "vercel": null
+      }
+    },
+    {
+      "id": "bullet-hell",
+      "name": "Bullet Hell",
+      "tagline": "Bullet heaven survivor",
+      "description": "Survive endless waves of enemies in an addictive bullet heaven shooter. Experimental take on the genre in pure JavaScript.",
+      "category": "game",
+      "status": "active",
+      "featured": false,
+      "stack": ["JavaScript"],
+      "topics": ["bullet-hell", "browser-game"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/bullet-hell",
+        "githubPages": "https://pfaustino.github.io/bullet-hell/",
+        "itch": "https://pfaustino.itch.io/bullet-hell",
+        "vercel": null
+      }
+    },
+    {
+      "id": "chrono-splinter",
+      "name": "Chrono-Splinter",
+      "tagline": "Sci-fi timeline strategy",
+      "description": "A desperate, militaristic future humanity invades from a dying timeline. Spacetime fracture narrative meets tactical strategy.",
+      "category": "game",
+      "status": "development",
+      "featured": false,
+      "stack": ["TypeScript"],
+      "topics": ["sci-fi", "strategy"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/chrono-splinter",
+        "githubPages": null,
+        "itch": "https://pfaustino.itch.io/chrono-splinter",
+        "vercel": null
+      }
+    },
+    {
+      "id": "phaser_rpg",
+      "name": "RPG Adventure: Shattered Aegis",
+      "tagline": "Phaser port of a Pygame RPG",
+      "description": "Classic top-down RPG rebuilt for the browser — ported from Python/Pygame to Phaser with quests, combat, and exploration.",
+      "category": "game",
+      "status": "active",
+      "featured": false,
+      "stack": ["Python", "Phaser", "JavaScript"],
+      "topics": ["rpg", "phaser", "port"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/phaser_rpg",
+        "githubPages": "https://pfaustino.github.io/phaser_rpg/",
+        "itch": "https://pfaustino.itch.io/rpg-adventure-shattered-aegis",
+        "vercel": "https://phaser-rpg-six.vercel.app"
+      }
+    },
+    {
+      "id": "angry_battery",
+      "name": "Angry Battery",
+      "tagline": "Battery monitor with personality",
+      "description": "A Flutter mobile utility that watches your battery level and reacts with character. Practical monitoring meets playful UX.",
+      "category": "app",
+      "status": "development",
+      "featured": false,
+      "stack": ["Flutter", "Dart"],
+      "topics": ["mobile", "utility", "battery"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/angry_battery",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "receipts",
+      "name": "Receipts",
+      "tagline": "Receipt scanning with OCR",
+      "description": "Scan and parse receipts using computer vision and OCR. Built with Python and Streamlit for quick expense tracking.",
+      "category": "app",
+      "status": "development",
+      "featured": false,
+      "stack": ["Python", "Streamlit", "OCR"],
+      "topics": ["computer-vision", "ocr"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/receipts",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "civilization-war",
+      "name": "Civilization War",
+      "tagline": "Civ-style war sim prototype",
+      "description": "An inactive prototype exploring civilization-style war simulation and grand-strategy mechanics in the browser.",
+      "category": "prototype",
+      "status": "inactive",
+      "featured": false,
+      "stack": ["TypeScript"],
+      "topics": ["strategy", "prototype"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/civilization-war",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "simple_rpg",
+      "name": "Simple RPG",
+      "tagline": "Pygame RPG foundation",
+      "description": "A straightforward top-down RPG built with Python and Pygame — the original codebase that phaser_rpg was ported from.",
+      "category": "prototype",
+      "status": "archived",
+      "featured": false,
+      "stack": ["Python", "Pygame"],
+      "topics": ["rpg", "pygame"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/simple_rpg",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "rpg_new",
+      "name": "RPG New",
+      "tagline": "RPG experiment branch",
+      "description": "Experimental RPG prototype and module tests. See simple_rpg for the Pygame version and phaser_rpg for the browser port.",
+      "category": "prototype",
+      "status": "development",
+      "featured": false,
+      "stack": ["Python"],
+      "topics": ["rpg", "prototype"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/rpg_new",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    }
+  ]
+}

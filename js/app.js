@@ -1,0 +1,173 @@
+const ICONS = {
+  github: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
+  pages: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
+  itch: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 2C3.67 2 3 2.67 3 3.5v17c0 .83.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5v-17c0-.83-.67-1.5-1.5-1.5h-15zm8.28 5.28c.39-.39 1.02-.39 1.41 0l4.5 4.5c.39.39.39 1.02 0 1.41l-4.5 4.5a.996.996 0 0 1-1.41-1.41L15.59 12l-3.3-3.31a.996.996 0 0 1 0-1.41z"/></svg>`,
+  vercel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 19.5h20L12 2z"/></svg>`,
+};
+
+const CATEGORY_LABELS = {
+  game: "Game",
+  app: "App",
+  prototype: "Prototype",
+};
+
+const STATUS_LABELS = {
+  active: "Active",
+  development: "In Dev",
+  inactive: "Inactive",
+  archived: "Archived",
+};
+
+/** @typedef {{ id: string, name: string, tagline: string, description: string, category: string, status: string, featured: boolean, stack: string[], topics: string[], updated: string, links: { github: string, githubPages: string|null, itch: string|null, vercel: string|null } }} Project */
+
+let allProjects = [];
+let activeFilter = "all";
+let searchQuery = "";
+
+async function loadData() {
+  const url = new URL("../data/projects.json", import.meta.url);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load projects: ${res.status}`);
+  return res.json();
+}
+
+function renderStats(projects) {
+  const playable = projects.filter(
+    (p) => p.links.githubPages || p.links.itch || p.links.vercel
+  ).length;
+
+  const stats = [
+    { value: projects.length, label: "Projects" },
+    { value: projects.filter((p) => p.category === "game").length, label: "Games" },
+    { value: playable, label: "Playable" },
+    { value: projects.filter((p) => p.status === "active").length, label: "Active" },
+  ];
+
+  document.getElementById("stats-bar").innerHTML = stats
+    .map(
+      (s) => `
+      <div class="stat-pill">
+        <span class="stat-value">${s.value}</span>
+        <span class="stat-label">${s.label}</span>
+      </div>`
+    )
+    .join("");
+}
+
+function renderLink(type, url, label) {
+  if (url) {
+    return `<a href="${url}" class="link-btn link-btn--${type}" target="_blank" rel="noopener noreferrer">${ICONS[type]}${label}</a>`;
+  }
+  return `<span class="link-btn link-btn--${type} link-btn--disabled" aria-hidden="true">${ICONS[type]}${label}</span>`;
+}
+
+/** @param {Project} project */
+function renderCard(project) {
+  const stackTags = project.stack
+    .map((s) => `<span class="stack-tag">${s}</span>`)
+    .join("");
+
+  const updated = new Date(project.updated).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+
+  return `
+    <article class="project-card" role="listitem" data-id="${project.id}">
+      <div class="card-header">
+        <div class="card-title-group">
+          <h3 class="card-title">${project.name}</h3>
+          <p class="card-tagline">${project.tagline}</p>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-category">${CATEGORY_LABELS[project.category] ?? project.category}</span>
+          <span class="badge badge-status-${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>
+        </div>
+      </div>
+      <p class="card-description">${project.description}</p>
+      <div class="card-stack">${stackTags}</div>
+      <p class="card-meta">Updated ${updated}</p>
+      <div class="card-links">
+        ${renderLink("github", project.links.github, "GitHub")}
+        ${renderLink("pages", project.links.githubPages, "Pages")}
+        ${renderLink("itch", project.links.itch, "itch.io")}
+        ${renderLink("vercel", project.links.vercel, "Vercel")}
+      </div>
+    </article>`;
+}
+
+function getFilteredProjects() {
+  return allProjects.filter((p) => {
+    const matchesFilter = activeFilter === "all" || p.category === activeFilter;
+    const q = searchQuery.toLowerCase().trim();
+    const matchesSearch =
+      !q ||
+      p.name.toLowerCase().includes(q) ||
+      p.tagline.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.stack.some((s) => s.toLowerCase().includes(q)) ||
+      p.topics.some((t) => t.toLowerCase().includes(q));
+    return matchesFilter && matchesSearch;
+  });
+}
+
+function renderProjects() {
+  const filtered = getFilteredProjects();
+  const featured = filtered.filter((p) => p.featured);
+  const rest = filtered.filter((p) => !p.featured);
+
+  const featuredSection = document.getElementById("featured-section");
+  const featuredGrid = document.getElementById("featured-grid");
+  const projectGrid = document.getElementById("project-grid");
+  const emptyState = document.getElementById("empty-state");
+  const heading = document.getElementById("projects-heading");
+
+  if (activeFilter === "all" && !searchQuery && featured.length > 0) {
+    featuredSection.hidden = false;
+    featuredGrid.innerHTML = featured.map(renderCard).join("");
+    heading.textContent = "More Projects";
+    projectGrid.innerHTML = rest.map(renderCard).join("");
+  } else {
+    featuredSection.hidden = true;
+    heading.textContent = "Projects";
+    projectGrid.innerHTML = filtered.map(renderCard).join("");
+  }
+
+  emptyState.hidden = filtered.length > 0;
+}
+
+function setupFilters() {
+  document.getElementById("category-filters").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-filter]");
+    if (!btn) return;
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderProjects();
+  });
+
+  document.getElementById("search").addEventListener("input", (e) => {
+    searchQuery = e.target.value;
+    renderProjects();
+  });
+}
+
+async function init() {
+  try {
+    const data = await loadData();
+    allProjects = data.projects;
+
+    if (data.owner?.bio) {
+      document.getElementById("owner-bio").textContent = data.owner.bio;
+    }
+
+    renderStats(allProjects);
+    setupFilters();
+    renderProjects();
+  } catch (err) {
+    document.getElementById("project-grid").innerHTML = `
+      <p class="empty-state">Could not load project data. ${err.message}</p>`;
+  }
+}
+
+init();
