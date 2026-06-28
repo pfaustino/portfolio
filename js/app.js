@@ -3,6 +3,7 @@ const ICONS = {
   pages: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
   itch: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 2C3.67 2 3 2.67 3 3.5v17c0 .83.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5v-17c0-.83-.67-1.5-1.5-1.5h-15zm8.28 5.28c.39-.39 1.02-.39 1.41 0l4.5 4.5c.39.39.39 1.02 0 1.41l-4.5 4.5a.996.996 0 0 1-1.41-1.41L15.59 12l-3.3-3.31a.996.996 0 0 1 0-1.41z"/></svg>`,
   vercel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 19.5h20L12 2z"/></svg>`,
+  local: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H4V6zm2 2v6h12V8H6zm2 10h8v2H8v-2z"/></svg>`,
 };
 
 const CATEGORY_LABELS = {
@@ -18,7 +19,90 @@ const STATUS_LABELS = {
   archived: "Archived",
 };
 
-/** @typedef {{ id: string, name: string, tagline: string, description: string, category: string, status: string, featured: boolean, stack: string[], topics: string[], updated: string, links: { github: string, githubPages: string|null, itch: string|null, vercel: string|null } }} Project */
+/** @typedef {{ id: string, name: string, tagline: string, description: string, category: string, status: string, featured: boolean, stack: string[], topics: string[], updated: string, devPort?: number|null, links: { github: string, githubPages: string|null, itch: string|null, vercel: string|null } }} Project */
+
+function isLocalDev() {
+  const host = location.hostname;
+  return host === "localhost" || host === "127.0.0.1" || host === "[::1]";
+}
+
+function localDevUrl(port) {
+  if (port === 80) return "http://localhost/";
+  return `http://localhost:${port}/`;
+}
+
+function localDevLabel(port) {
+  return port === 80 ? ":80" : `:${port}`;
+}
+
+/** Folder name for `gdev <repo>` — matches _devkit/dev-ports.json keys */
+function devRepoName(project) {
+  if (project.devRepo) return project.devRepo;
+  if (project.id === "gigazonk") return "GigaZonk";
+  return project.id;
+}
+
+/** @returns {Promise<boolean>} */
+async function probeDevPort(port) {
+  const url = localDevUrl(port);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 1500);
+  try {
+    await fetch(url, { method: "GET", mode: "no-cors", cache: "no-store", signal: controller.signal });
+    return true;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function applyLocalDevLinkState(el, online, port, repoName) {
+  const label = localDevLabel(port);
+  const icon = ICONS.local;
+  const next = document.createElement(online ? "a" : "span");
+  next.className = `link-btn link-btn--local ${online ? "link-btn--online" : "link-btn--offline"}`;
+  next.dataset.devPort = String(port);
+  next.dataset.devRepo = repoName;
+  if (online) {
+    next.href = localDevUrl(port);
+    next.target = "_blank";
+    next.rel = "noopener noreferrer";
+    next.title = `Dev server running on port ${port}`;
+  } else {
+    next.title = `Not running — start with: gdev ${repoName}`;
+  }
+  next.innerHTML = `${icon}${label}`;
+  el.replaceWith(next);
+}
+
+async function refreshLocalDevLinks() {
+  if (!isLocalDev()) return;
+  const nodes = document.querySelectorAll("[data-dev-port]");
+  await Promise.all(
+    [...nodes].map(async (el) => {
+      const port = Number(el.dataset.devPort);
+      const repoName = el.dataset.devRepo ?? "";
+      const online = await probeDevPort(port);
+      const wasOnline = el.classList.contains("link-btn--online");
+      const wasOffline = el.classList.contains("link-btn--offline");
+      if (online && wasOnline) return;
+      if (!online && wasOffline) return;
+      applyLocalDevLinkState(el, online, port, repoName);
+    })
+  );
+}
+
+let localDevProbeTimer = null;
+
+function scheduleLocalDevProbe() {
+  if (!isLocalDev()) return;
+  if (localDevProbeTimer) clearTimeout(localDevProbeTimer);
+  localDevProbeTimer = setTimeout(() => {
+    refreshLocalDevLinks();
+    scheduleLocalDevProbe();
+  }, 8000);
+}
 
 let allProjects = [];
 let activeFilter = "all";
@@ -61,6 +145,16 @@ function renderLink(type, url, label) {
   return `<span class="link-btn link-btn--${type} link-btn--disabled" aria-hidden="true">${ICONS[type]}${label}</span>`;
 }
 
+/** Local dev server link — only on localhost; probes port before enabling */
+function renderLocalDevLink(port, repoName) {
+  if (!isLocalDev()) return "";
+  if (port) {
+    const label = localDevLabel(port);
+    return `<span class="link-btn link-btn--local link-btn--pending" data-dev-port="${port}" data-dev-repo="${repoName}" title="Checking dev server…">${ICONS.local}${label}</span>`;
+  }
+  return `<span class="link-btn link-btn--local link-btn--disabled" aria-hidden="true" title="No local dev port configured">${ICONS.local}—</span>`;
+}
+
 /** @param {Project} project */
 function renderCard(project) {
   const stackTags = project.stack
@@ -82,6 +176,7 @@ function renderCard(project) {
         <div class="card-badges">
           <span class="badge badge-category">${CATEGORY_LABELS[project.category] ?? project.category}</span>
           <span class="badge badge-status-${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>
+          ${project.private ? '<span class="badge badge-private">Private repo</span>' : ""}
         </div>
       </div>
       <p class="card-description">${project.description}</p>
@@ -91,6 +186,7 @@ function renderCard(project) {
         ${renderLink("github", project.links.github, "GitHub")}
         ${renderLink("pages", project.links.githubPages, "Pages")}
         ${renderLink("itch", project.links.itch, "itch.io")}
+        ${renderLocalDevLink(project.devPort ?? null, devRepoName(project))}
         ${renderLink("vercel", project.links.vercel, "Vercel")}
       </div>
     </article>`;
@@ -134,6 +230,8 @@ function renderProjects() {
   }
 
   emptyState.hidden = filtered.length > 0;
+  refreshLocalDevLinks();
+  scheduleLocalDevProbe();
 }
 
 function setupFilters() {
@@ -164,6 +262,7 @@ async function init() {
     renderStats(allProjects);
     setupFilters();
     renderProjects();
+    window.addEventListener("focus", () => refreshLocalDevLinks());
   } catch (err) {
     document.getElementById("project-grid").innerHTML = `
       <p class="empty-state">Could not load project data. ${err.message}</p>`;

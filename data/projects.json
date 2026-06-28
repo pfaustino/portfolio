@@ -18,6 +18,7 @@
       "stack": ["JavaScript", "Vite", "Three.js"],
       "topics": ["roguelike", "horde-survival", "browser-game"],
       "updated": "2026-06-25",
+      "devPort": 5174,
       "links": {
         "github": "https://github.com/pfaustino/gigazonk",
         "githubPages": "https://pfaustino.github.io/gigazonk/",
@@ -36,6 +37,7 @@
       "stack": ["TypeScript", "Vite"],
       "topics": ["scanner", "web-app", "ethics"],
       "updated": "2026-06-23",
+      "devPort": 5182,
       "links": {
         "github": "https://github.com/pfaustino/boycott-evil",
         "githubPages": null,
@@ -54,6 +56,7 @@
       "stack": ["JavaScript", "Vite"],
       "topics": ["space-sim", "trading", "simulation"],
       "updated": "2026-06-23",
+      "devPort": 5178,
       "links": {
         "github": "https://github.com/pfaustino/solar-system-trader",
         "githubPages": "https://pfaustino.github.io/solar-system-trader/",
@@ -72,6 +75,7 @@
       "stack": ["JavaScript", "Three.js"],
       "topics": ["fps", "browser-game", "threejs"],
       "updated": "2026-06-23",
+      "devPort": 5180,
       "links": {
         "github": "https://github.com/pfaustino/3dfps",
         "githubPages": "https://pfaustino.github.io/3dfps/",
@@ -82,14 +86,15 @@
     {
       "id": "mining-coins",
       "name": "Mining Coins",
-      "tagline": "Browser mining arcade",
-      "description": "A browser arcade game about mining coins. Data-driven balance via JSON, dev panel for tuning, and GitHub Pages auto-deploy.",
-      "category": "game",
+      "tagline": "NiceHash mining dashboard",
+      "description": "A browser-based dashboard for monitoring and managing NiceHash crypto mining — not a game. Track rigs, earnings, and mining status from the web.",
+      "category": "app",
       "status": "active",
       "featured": false,
       "stack": ["JavaScript", "Vite"],
-      "topics": ["arcade", "browser-game", "mining"],
+      "topics": ["nicehash", "crypto", "mining"],
       "updated": "2026-06-25",
+      "devPort": 5181,
       "links": {
         "github": "https://github.com/pfaustino/mining-coins",
         "githubPages": "https://pfaustino.github.io/mining-coins/",
@@ -108,6 +113,7 @@
       "stack": ["JavaScript"],
       "topics": ["platformer", "retro", "browser-game"],
       "updated": "2026-06-23",
+      "devPort": 5176,
       "links": {
         "github": "https://github.com/pfaustino/ghouls-n-orcs",
         "githubPages": null,
@@ -126,6 +132,7 @@
       "stack": ["JavaScript"],
       "topics": ["bullet-hell", "browser-game"],
       "updated": "2026-06-23",
+      "devPort": 5177,
       "links": {
         "github": "https://github.com/pfaustino/bullet-hell",
         "githubPages": "https://pfaustino.github.io/bullet-hell/",
@@ -141,9 +148,10 @@
       "category": "game",
       "status": "development",
       "featured": false,
-      "stack": ["TypeScript"],
+      "stack": ["JavaScript"],
       "topics": ["sci-fi", "strategy"],
       "updated": "2026-06-23",
+      "devPort": 5183,
       "links": {
         "github": "https://github.com/pfaustino/chrono-splinter",
         "githubPages": null,
@@ -162,6 +170,7 @@
       "stack": ["Python", "Phaser", "JavaScript"],
       "topics": ["rpg", "phaser", "port"],
       "updated": "2026-06-23",
+      "devPort": 5184,
       "links": {
         "github": "https://github.com/pfaustino/phaser_rpg",
         "githubPages": "https://pfaustino.github.io/phaser_rpg/",
@@ -185,6 +194,25 @@
         "githubPages": null,
         "itch": null,
         "vercel": null
+      }
+    },
+    {
+      "id": "easy-dmv-coach",
+      "name": "Easy DMV Coach",
+      "tagline": "DMV learner permit prep",
+      "description": "Practice state-specific DMV permit questions to prepare for your learner's license exam. Flutter web app with multi-state question banks and bilingual support.",
+      "category": "app",
+      "status": "active",
+      "featured": false,
+      "private": true,
+      "stack": ["Flutter", "Dart"],
+      "topics": ["education", "dmv", "web-app"],
+      "updated": "2026-06-23",
+      "links": {
+        "github": "https://github.com/pfaustino/easy-dmv-coach",
+        "githubPages": null,
+        "itch": null,
+        "vercel": "https://easy-dmv-coach.vercel.app"
       }
     },
     {
@@ -216,6 +244,7 @@
       "stack": ["TypeScript"],
       "topics": ["strategy", "prototype"],
       "updated": "2026-06-23",
+      "devPort": 5179,
       "links": {
         "github": "https://github.com/pfaustino/civilization-war",
         "githubPages": null,

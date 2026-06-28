@@ -348,6 +348,7 @@ body {
 .badge-status-development { color: #d29922; background: #d2992218; }
 .badge-status-inactive { color: var(--text-muted); background: var(--bg-elevated); }
 .badge-status-archived { color: #8b949e; background: #8b949e18; }
+.badge-private { color: #a78bfa; background: #a78bfa18; }
 
 .card-description {
   margin: 0;
@@ -418,6 +419,28 @@ body {
 
 .link-btn--vercel { color: var(--vercel); background: #ffffff0a; }
 .link-btn--vercel:hover { border-color: #888; }
+
+.link-btn--local { color: #79c0ff; background: #388bfd12; font-variant-numeric: tabular-nums; }
+.link-btn--local:hover { border-color: #79c0ff; }
+
+.link-btn--local.link-btn--pending {
+  opacity: 0.55;
+  border-style: dotted;
+  cursor: wait;
+}
+
+.link-btn--local.link-btn--offline {
+  color: var(--text-muted);
+  background: transparent;
+  opacity: 0.4;
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+.link-btn--local.link-btn--online {
+  color: #79c0ff;
+  background: #388bfd18;
+}
 
 .link-btn--disabled {
   color: var(--text-muted);
