@@ -27,6 +27,25 @@
       }
     },
     {
+      "id": "calamari-damacy",
+      "name": "Calamari Damacy",
+      "tagline": "Katamari-inspired sticky-ball roller",
+      "description": "Roll a sticky calamari ball across the tide pool, scoop anything smaller than you, and hang new stars for the King of the Cosmos. Three.js browser game with melt-into-volume growth, mass-based bonks, and a Pixabay music playlist.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite", "Three.js"],
+      "topics": ["katamari", "browser-game", "threejs"],
+      "updated": "2026-07-16",
+      "devPort": 5173,
+      "links": {
+        "github": "https://github.com/pfaustino/calamari-damacy",
+        "githubPages": "https://pfaustino.github.io/calamari-damacy/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "boycott-evil",
       "name": "Boycott Evil",
       "tagline": "Ethical product scanner",
