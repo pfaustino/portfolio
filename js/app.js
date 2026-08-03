@@ -46,7 +46,7 @@ function devRepoName(project) {
 async function probeDevPort(port) {
   const url = localDevUrl(port);
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 1500);
+  const timer = setTimeout(() => controller.abort(), 2500);
   try {
     await fetch(url, { method: "GET", mode: "no-cors", cache: "no-store", signal: controller.signal });
     return true;
@@ -60,18 +60,16 @@ async function probeDevPort(port) {
 function applyLocalDevLinkState(el, online, port, repoName) {
   const label = localDevLabel(port);
   const icon = ICONS.local;
-  const next = document.createElement(online ? "a" : "span");
+  const next = document.createElement("a");
   next.className = `link-btn link-btn--local ${online ? "link-btn--online" : "link-btn--offline"}`;
+  next.href = localDevUrl(port);
+  next.target = "_blank";
+  next.rel = "noopener noreferrer";
   next.dataset.devPort = String(port);
   next.dataset.devRepo = repoName;
-  if (online) {
-    next.href = localDevUrl(port);
-    next.target = "_blank";
-    next.rel = "noopener noreferrer";
-    next.title = `Dev server running on port ${port}`;
-  } else {
-    next.title = `Not running — start with: gdev ${repoName}`;
-  }
+  next.title = online
+    ? `Dev server running on port ${port}`
+    : `Dev server not detected on port ${port} — run: gdev ${repoName}`;
   next.innerHTML = `${icon}${label}`;
   el.replaceWith(next);
 }
@@ -150,7 +148,7 @@ function renderLocalDevLink(port, repoName) {
   if (!isLocalDev()) return "";
   if (port) {
     const label = localDevLabel(port);
-    return `<span class="link-btn link-btn--local link-btn--pending" data-dev-port="${port}" data-dev-repo="${repoName}" title="Checking dev server…">${ICONS.local}${label}</span>`;
+    return `<a href="${localDevUrl(port)}" class="link-btn link-btn--local link-btn--pending" data-dev-port="${port}" data-dev-repo="${repoName}" target="_blank" rel="noopener noreferrer" title="Checking dev server…">${ICONS.local}${label}</a>`;
   }
   return `<span class="link-btn link-btn--local link-btn--disabled" aria-hidden="true" title="No local dev port configured">${ICONS.local}—</span>`;
 }

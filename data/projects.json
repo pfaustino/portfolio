@@ -8,6 +8,25 @@
   },
   "projects": [
     {
+      "id": "tower-of-power",
+      "name": "Tower of Power",
+      "tagline": "3D crystal tower defense",
+      "description": "Defend power-crystal outposts from UFO invaders. Grid-based tower placement, wave survival, and Kenney low-poly 3D assets in Three.js.",
+      "category": "game",
+      "status": "development",
+      "featured": true,
+      "stack": ["JavaScript", "Vite", "Three.js"],
+      "topics": ["tower-defense", "browser-game", "threejs"],
+      "updated": "2026-07-22",
+      "devPort": 5185,
+      "links": {
+        "github": "https://github.com/pfaustino/tower-of-power",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "gigazonk",
       "name": "GigaZonk",
       "tagline": "3D horde survival roguelike",
@@ -27,16 +46,35 @@
       }
     },
     {
-      "id": "calamari-damacy",
+      "id": "calamari-damacy-discord",
       "name": "Calamari Damacy",
-      "tagline": "Katamari-inspired sticky-ball roller",
-      "description": "Roll a sticky calamari ball across the tide pool, scoop anything smaller than you, and hang new stars for the King of the Cosmos. Three.js browser game with melt-into-volume growth, mass-based bonks, and a Pixabay music playlist.",
+      "tagline": "Katamari roller for Discord Activities",
+      "description": "Roll a sticky calamari ball across coastal stages — scoop junk, grow, and present stars to the King. Discord Activity port with OAuth, tilt/thumb-pad mobile controls, WebSocket multiplayer, and a global leaderboard.",
       "category": "game",
       "status": "active",
       "featured": true,
-      "stack": ["JavaScript", "Vite", "Three.js"],
-      "topics": ["katamari", "browser-game", "threejs"],
-      "updated": "2026-07-16",
+      "stack": ["JavaScript", "Vite", "Three.js", "Discord SDK"],
+      "topics": ["katamari", "discord-activity", "browser-game", "threejs", "multiplayer"],
+      "updated": "2026-08-03",
+      "devPort": 5174,
+      "links": {
+        "github": "https://github.com/pfaustino/calamari-damacy-discord",
+        "githubPages": "https://pfaustino.github.io/calamari-damacy-discord/",
+        "itch": null,
+        "vercel": "https://calamari-damacy.vercel.app"
+      }
+    },
+    {
+      "id": "calamari-damacy",
+      "name": "Calamari Damacy (web)",
+      "tagline": "Katamari-inspired multiplayer roller",
+      "description": "Original browser build — roll a sticky calamari ball across coastal stages with PeerJS multiplayer. Prefer the Discord Activity port for the latest playable version.",
+      "category": "game",
+      "status": "active",
+      "featured": false,
+      "stack": ["JavaScript", "Vite", "Three.js", "PeerJS"],
+      "topics": ["katamari", "browser-game", "threejs", "multiplayer"],
+      "updated": "2026-07-18",
       "devPort": 5173,
       "links": {
         "github": "https://github.com/pfaustino/calamari-damacy",

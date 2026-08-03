@@ -432,9 +432,14 @@ body {
 .link-btn--local.link-btn--offline {
   color: var(--text-muted);
   background: transparent;
-  opacity: 0.4;
+  opacity: 0.55;
   border-style: dashed;
-  cursor: not-allowed;
+  cursor: pointer;
+}
+
+.link-btn--local.link-btn--offline:hover {
+  opacity: 0.85;
+  border-color: var(--text-muted);
 }
 
 .link-btn--local.link-btn--online {

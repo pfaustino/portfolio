@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Patrick Faustino project portfolio",
   "scripts": {
-    "dev": "npx serve .",
-    "preview": "npx serve ."
+    "dev": "npx serve . -l tcp://0.0.0.0:80",
+    "preview": "npx serve . -l tcp://0.0.0.0:80"
   }
 }
