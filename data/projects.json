@@ -13,16 +13,16 @@
       "tagline": "3D crystal tower defense",
       "description": "Defend power-crystal outposts from UFO invaders. Grid-based tower placement, wave survival, and Kenney low-poly 3D assets in Three.js.",
       "category": "game",
-      "status": "development",
+      "status": "active",
       "featured": true,
       "stack": ["JavaScript", "Vite", "Three.js"],
       "topics": ["tower-defense", "browser-game", "threejs"],
-      "updated": "2026-07-22",
+      "updated": "2026-08-08",
       "devPort": 5185,
       "links": {
         "github": "https://github.com/pfaustino/tower-of-power",
-        "githubPages": null,
-        "itch": null,
+        "githubPages": "https://pfaustino.github.io/tower-of-power/",
+        "itch": "https://pfaustino.itch.io/tower-of-power",
         "vercel": null
       }
     },
