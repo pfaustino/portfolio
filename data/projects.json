@@ -26,6 +26,24 @@
       }
     },
     {
+      "id": "world-information",
+      "name": "World Information",
+      "tagline": "Public data, told as lives",
+      "description": "Official World Bank and UNHCR series as country-by-country stories — girlhood, infrastructure, health, displacement, and poverty — with the year and a source on every number. Missing figures are gaps, not zeros.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "React"],
+      "topics": ["open-data", "world-bank", "unhcr", "education"],
+      "updated": "2026-08-19",
+      "links": {
+        "github": "https://github.com/pfaustino/world-information",
+        "githubPages": "https://pfaustino.github.io/world-information/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "earthquakes",
       "name": "World Disasters",
       "tagline": "Globe of quakes, storms, and fires",
