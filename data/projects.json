@@ -27,14 +27,14 @@
     },
     {
       "id": "earthquakes",
-      "name": "Pacific Earthquake Globe",
-      "tagline": "Ring of Fire earthquake visualization",
-      "description": "Pacific-facing Three.js globe of earthquakes. Live week plays USGS blips sized by magnitude; History 1900+ replays NOAA significant events with deaths, injuries, damage, and tsunamis when recorded.",
+      "name": "World Disasters",
+      "tagline": "Globe of quakes, storms, and fires",
+      "description": "Three.js globe of worldwide earthquakes, tornadoes, hurricanes/typhoons, and wildfires. Live week plays USGS, NWS/NHC/JMA, and EONET/NIFC feeds; History 1900+ replays NOAA significant quakes plus bundled storm and fire catalogs.",
       "category": "app",
       "status": "active",
       "featured": true,
       "stack": ["TypeScript", "Vite", "Three.js"],
-      "topics": ["earthquakes", "visualization", "threejs", "usgs", "noaa"],
+      "topics": ["earthquakes", "hurricanes", "wildfires", "visualization", "threejs"],
       "updated": "2026-08-19",
       "links": {
         "github": "https://github.com/pfaustino/earthquakes",
