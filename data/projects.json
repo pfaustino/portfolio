@@ -8,6 +8,24 @@
   },
   "projects": [
     {
+      "id": "earthquakes",
+      "name": "Pacific Earthquake Globe",
+      "tagline": "Ring of Fire earthquake visualization",
+      "description": "Pacific-facing Three.js globe of earthquakes. Live week plays USGS blips sized by magnitude; History 1900+ replays NOAA significant events with deaths, injuries, damage, and tsunamis when recorded.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["earthquakes", "visualization", "threejs", "usgs", "noaa"],
+      "updated": "2026-08-19",
+      "links": {
+        "github": "https://github.com/pfaustino/earthquakes",
+        "githubPages": "https://pfaustino.github.io/earthquakes/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "tower-of-power",
       "name": "Tower of Power",
       "tagline": "3D crystal tower defense",
