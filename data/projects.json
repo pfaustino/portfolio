@@ -8,6 +8,24 @@
   },
   "projects": [
     {
+      "id": "CityScope",
+      "name": "CityScope",
+      "tagline": "Civic data for Burbank, CA",
+      "description": "Public-data site for Burbank. Sitting council Form 460 campaign totals and Schedule A itemized contributors from city eFile, plus overlays for budget, permits, and other public records.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "React"],
+      "topics": ["civic-data", "campaign-finance", "burbank", "open-data"],
+      "updated": "2026-08-19",
+      "links": {
+        "github": "https://github.com/pfaustino/CityScope",
+        "githubPages": "https://pfaustino.github.io/CityScope/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "earthquakes",
       "name": "Pacific Earthquake Globe",
       "tagline": "Ring of Fire earthquake visualization",
