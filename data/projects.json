@@ -55,8 +55,8 @@
       "topics": ["earthquakes", "hurricanes", "wildfires", "visualization", "threejs"],
       "updated": "2026-08-19",
       "links": {
-        "github": "https://github.com/pfaustino/earthquakes",
-        "githubPages": "https://pfaustino.github.io/earthquakes/",
+        "github": "https://github.com/pfaustino/disasters",
+        "githubPages": "https://pfaustino.github.io/disasters/",
         "itch": null,
         "vercel": null
       }
