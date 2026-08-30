@@ -254,6 +254,7 @@ function setupFilters() {
 
 async function init() {
   try {
+    setupThemeToggle();
     const data = await loadData();
     allProjects = data.projects;
 
@@ -269,6 +270,41 @@ async function init() {
     document.getElementById("project-grid").innerHTML = `
       <p class="empty-state">Could not load project data. ${err.message}</p>`;
   }
+}
+
+const THEME_KEY = "portfolio-theme";
+const THEME_LABELS = { midnight: "Midnight", brutal: "Brutal" };
+
+function getTheme() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  return attr === "brutal" ? "brutal" : "midnight";
+}
+
+function applyTheme(theme) {
+  const next = theme === "brutal" ? "brutal" : "midnight";
+  document.documentElement.setAttribute("data-theme", next);
+  try {
+    localStorage.setItem(THEME_KEY, next);
+  } catch (_) {
+    /* ignore quota / private mode */
+  }
+  const btn = document.getElementById("theme-toggle");
+  const label = document.getElementById("theme-toggle-label");
+  if (btn) {
+    btn.setAttribute("aria-pressed", String(next === "brutal"));
+    btn.title =
+      next === "brutal" ? "Switch to midnight" : "Switch to neo-brutalism";
+  }
+  if (label) label.textContent = THEME_LABELS[next];
+}
+
+function setupThemeToggle() {
+  applyTheme(getTheme());
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    applyTheme(getTheme() === "brutal" ? "midnight" : "brutal");
+  });
 }
 
 init();
