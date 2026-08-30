@@ -81,6 +81,24 @@
       }
     },
     {
+      "id": "death-atlas",
+      "name": "Death Atlas",
+      "tagline": "Globe of major battles through time",
+      "description": "A Three.js globe of historically significant battles from the Late Bronze Age to today. The camera turns to each fight, the timeline slows on a details card, and you can run time forward or backward — reversing erases later scars.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["history", "battles", "visualization", "threejs", "globe"],
+      "updated": "2026-08-21",
+      "links": {
+        "github": "https://github.com/pfaustino/death-atlas",
+        "githubPages": "https://pfaustino.github.io/death-atlas/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "tower-of-power",
       "name": "Tower of Power",
       "tagline": "3D crystal tower defense",
