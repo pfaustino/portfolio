@@ -7,14 +7,14 @@
   <title>Patrick Faustino — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@600;700&family=Outfit:wght@400;500;600;700&family=Share+Tech+Mono&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>
     (function () {
+      var allowed = ["midnight", "brutal", "aero", "glass", "chrome", "clay", "terminal"];
       try {
         var t = localStorage.getItem("portfolio-theme");
-        if (t === "brutal" || t === "midnight") document.documentElement.setAttribute("data-theme", t);
-        else document.documentElement.setAttribute("data-theme", "midnight");
+        document.documentElement.setAttribute("data-theme", allowed.indexOf(t) >= 0 ? t : "midnight");
       } catch (_) {
         document.documentElement.setAttribute("data-theme", "midnight");
       }
@@ -32,11 +32,14 @@
         <p class="brand-bio" id="owner-bio">Browser game dev &amp; AI researcher.</p>
       </div>
       <div class="header-actions">
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" title="Switch to neo-brutalism">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cycle design theme" title="Next theme">
           <span class="theme-toggle__track" aria-hidden="true">
-            <span class="theme-toggle__thumb"></span>
+            <span class="theme-toggle__thumb" id="theme-toggle-thumb"></span>
           </span>
-          <span class="theme-toggle__label" id="theme-toggle-label">Midnight</span>
+          <span class="theme-toggle__copy">
+            <span class="theme-toggle__hint">Style</span>
+            <span class="theme-toggle__label" id="theme-toggle-label">Midnight</span>
+          </span>
         </button>
         <nav class="header-links" aria-label="External profiles">
           <a href="https://github.com/pfaustino" class="header-link" target="_blank" rel="noopener noreferrer">

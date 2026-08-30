@@ -273,15 +273,29 @@ async function init() {
 }
 
 const THEME_KEY = "portfolio-theme";
-const THEME_LABELS = { midnight: "Midnight", brutal: "Brutal" };
+const THEMES = ["midnight", "brutal", "aero", "glass", "chrome", "clay", "terminal"];
+const THEME_LABELS = {
+  midnight: "Midnight",
+  brutal: "Brutal",
+  aero: "Aero",
+  glass: "Glass",
+  chrome: "Y2K",
+  clay: "Clay",
+  terminal: "Terminal",
+};
 
 function getTheme() {
   const attr = document.documentElement.getAttribute("data-theme");
-  return attr === "brutal" ? "brutal" : "midnight";
+  return THEMES.includes(attr) ? attr : "midnight";
+}
+
+function nextTheme(current) {
+  const i = THEMES.indexOf(current);
+  return THEMES[(i < 0 ? 0 : i + 1) % THEMES.length];
 }
 
 function applyTheme(theme) {
-  const next = theme === "brutal" ? "brutal" : "midnight";
+  const next = THEMES.includes(theme) ? theme : "midnight";
   document.documentElement.setAttribute("data-theme", next);
   try {
     localStorage.setItem(THEME_KEY, next);
@@ -290,12 +304,21 @@ function applyTheme(theme) {
   }
   const btn = document.getElementById("theme-toggle");
   const label = document.getElementById("theme-toggle-label");
+  const thumb = document.getElementById("theme-toggle-thumb");
+  const upcoming = nextTheme(next);
   if (btn) {
-    btn.setAttribute("aria-pressed", String(next === "brutal"));
-    btn.title =
-      next === "brutal" ? "Switch to midnight" : "Switch to neo-brutalism";
+    btn.title = `Next: ${THEME_LABELS[upcoming]}`;
+    btn.setAttribute(
+      "aria-label",
+      `Theme ${THEME_LABELS[next]}. Click for ${THEME_LABELS[upcoming]}`
+    );
   }
   if (label) label.textContent = THEME_LABELS[next];
+  if (thumb) {
+    const idx = THEMES.indexOf(next);
+    const max = THEMES.length - 1;
+    thumb.style.left = `calc(${(idx / max) * 100}% - ${(idx / max) * 0.7}rem)`;
+  }
 }
 
 function setupThemeToggle() {
@@ -303,7 +326,7 @@ function setupThemeToggle() {
   const btn = document.getElementById("theme-toggle");
   if (!btn) return;
   btn.addEventListener("click", () => {
-    applyTheme(getTheme() === "brutal" ? "midnight" : "brutal");
+    applyTheme(nextTheme(getTheme()));
   });
 }
 
