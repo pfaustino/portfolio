@@ -408,6 +408,14 @@ body {
   fill: currentColor;
 }
 
+.link-btn--download {
+  color: #04110f;
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.link-btn--download:hover { background: #7ff5e0; border-color: #7ff5e0; }
+
 .link-btn--github { color: var(--github); background: #21262d; }
 .link-btn--github:hover { border-color: #484f58; }
 

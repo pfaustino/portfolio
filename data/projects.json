@@ -8,6 +8,25 @@
   },
   "projects": [
     {
+      "id": "StreamFinder",
+      "name": "StreamFinder",
+      "tagline": "Searchable IPTV browser",
+      "description": "Windows desktop app that searches the iptv-org catalog instead of dumping a giant M3U. Filters, favorites, EPG, custom playlists, and in-app playback through VLC.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "React", "Tauri", "Rust"],
+      "topics": ["iptv", "desktop", "vlc", "tauri"],
+      "updated": "2026-08-29",
+      "links": {
+        "github": "https://github.com/pfaustino/StreamFinder",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null,
+        "download": "https://github.com/pfaustino/StreamFinder/releases/latest/download/StreamFinder-setup.exe"
+      }
+    },
+    {
       "id": "CityScope",
       "name": "CityScope",
       "tagline": "Civic data for Burbank, CA",

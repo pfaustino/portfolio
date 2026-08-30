@@ -3,6 +3,7 @@ const ICONS = {
   pages: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
   itch: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 2C3.67 2 3 2.67 3 3.5v17c0 .83.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5v-17c0-.83-.67-1.5-1.5-1.5h-15zm8.28 5.28c.39-.39 1.02-.39 1.41 0l4.5 4.5c.39.39.39 1.02 0 1.41l-4.5 4.5a.996.996 0 0 1-1.41-1.41L15.59 12l-3.3-3.31a.996.996 0 0 1 0-1.41z"/></svg>`,
   vercel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 19.5h20L12 2z"/></svg>`,
+  download: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L11 13.59V4a1 1 0 0 1 1-1zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>`,
   local: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H4V6zm2 2v6h12V8H6zm2 10h8v2H8v-2z"/></svg>`,
 };
 
@@ -19,7 +20,7 @@ const STATUS_LABELS = {
   archived: "Archived",
 };
 
-/** @typedef {{ id: string, name: string, tagline: string, description: string, category: string, status: string, featured: boolean, stack: string[], topics: string[], updated: string, devPort?: number|null, links: { github: string, githubPages: string|null, itch: string|null, vercel: string|null } }} Project */
+/** @typedef {{ id: string, name: string, tagline: string, description: string, category: string, status: string, featured: boolean, stack: string[], topics: string[], updated: string, devPort?: number|null, links: { github: string, githubPages: string|null, itch: string|null, vercel: string|null, download?: string|null } }} Project */
 
 function isLocalDev() {
   const host = location.hostname;
@@ -115,7 +116,7 @@ async function loadData() {
 
 function renderStats(projects) {
   const playable = projects.filter(
-    (p) => p.links.githubPages || p.links.itch || p.links.vercel
+    (p) => p.links.githubPages || p.links.itch || p.links.vercel || p.links.download
   ).length;
 
   const stats = [
@@ -138,7 +139,9 @@ function renderStats(projects) {
 
 function renderLink(type, url, label) {
   if (url) {
-    return `<a href="${url}" class="link-btn link-btn--${type}" target="_blank" rel="noopener noreferrer">${ICONS[type]}${label}</a>`;
+    const filename = url.split("/").pop() || "download";
+    const download = type === "download" ? ` download="${filename}"` : "";
+    return `<a href="${url}" class="link-btn link-btn--${type}" target="_blank" rel="noopener noreferrer"${download}>${ICONS[type]}${label}</a>`;
   }
   return `<span class="link-btn link-btn--${type} link-btn--disabled" aria-hidden="true">${ICONS[type]}${label}</span>`;
 }
@@ -181,6 +184,7 @@ function renderCard(project) {
       <div class="card-stack">${stackTags}</div>
       <p class="card-meta">Updated ${updated}</p>
       <div class="card-links">
+        ${project.links.download ? renderLink("download", project.links.download, "Download") : ""}
         ${renderLink("github", project.links.github, "GitHub")}
         ${renderLink("pages", project.links.githubPages, "Pages")}
         ${renderLink("itch", project.links.itch, "itch.io")}
