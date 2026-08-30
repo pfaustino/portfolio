@@ -273,7 +273,7 @@ async function init() {
 }
 
 const THEME_KEY = "portfolio-theme";
-const THEMES = ["midnight", "brutal", "aero", "glass", "chrome", "clay", "terminal"];
+const THEMES = ["midnight", "brutal", "aero", "glass", "chrome", "clay", "terminal", "lego"];
 const THEME_LABELS = {
   midnight: "Midnight",
   brutal: "Brutal",
@@ -282,6 +282,7 @@ const THEME_LABELS = {
   chrome: "Y2K",
   clay: "Clay",
   terminal: "Terminal",
+  lego: "Lego",
 };
 
 function getTheme() {

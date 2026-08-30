@@ -229,6 +229,38 @@
   --toggle-thumb: #39ff14;
 }
 
+/* Lego — chunky brick plastic */
+[data-theme="lego"] {
+  --bg: #f2f2f2;
+  --bg-elevated: #d6e4ff;
+  --bg-card: #ffe400;
+  --border: #1a1a1a;
+  --border-hover: #1a1a1a;
+  --border-width: 3px;
+  --text: #1a1a1a;
+  --text-muted: #3d3d3d;
+  --accent: #e3000b;
+  --accent-dim: #e3000b33;
+  --accent-secondary: #0055a5;
+  --github: #1a1a1a;
+  --itch: #e3000b;
+  --vercel: #1a1a1a;
+  --pages: #00af4d;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 4px;
+  --shadow: 4px 4px 0 #1a1a1a;
+  --shadow-hover: 7px 7px 0 #1a1a1a;
+  --font: "Fredoka", "Space Grotesk", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --grid-line: rgba(26, 26, 26, 0.08);
+  --brand-gradient: none;
+  --card-featured-bg: #e3000b;
+  --filter-active-fg: #ffffff;
+  --toggle-track: #0055a5;
+  --toggle-thumb: #ffe400;
+}
+
 *,
 *::before,
 *::after {
@@ -1207,6 +1239,165 @@ body {
 [data-theme="terminal"] .link-btn--local {
   color: #39ff14;
   background: transparent;
+}
+
+[data-theme="lego"] body {
+  background:
+    radial-gradient(circle at 12% 8%, #ffe400 0 90px, transparent 91px),
+    radial-gradient(circle at 88% 12%, #0055a5 0 70px, transparent 71px),
+    radial-gradient(circle at 70% 85%, #e3000b 0 110px, transparent 111px),
+    #f2f2f2;
+}
+
+[data-theme="lego"] .bg-grid {
+  background-image: radial-gradient(circle, #1a1a1a 0 5px, transparent 6px);
+  background-size: 28px 28px;
+  background-position: 10px 10px;
+  mask-image: none;
+  opacity: 0.12;
+}
+
+[data-theme="lego"] .brand-name {
+  -webkit-text-fill-color: var(--text);
+  background: none;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="lego"] .brand-eyebrow {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  background: #0055a5;
+  color: #fff;
+  border: var(--border-width) solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+}
+
+[data-theme="lego"] .project-card,
+[data-theme="lego"] .stat-pill,
+[data-theme="lego"] .header-link,
+[data-theme="lego"] .theme-toggle,
+[data-theme="lego"] .filter-btn,
+[data-theme="lego"] .search-wrap input,
+[data-theme="lego"] .link-btn:not(.link-btn--disabled) {
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+[data-theme="lego"] .project-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  right: 14px;
+  height: 14px;
+  background-image: radial-gradient(circle, currentColor 0 6px, transparent 7px);
+  background-size: 22px 14px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  color: inherit;
+  opacity: 0.95;
+  filter: brightness(0.92);
+  pointer-events: none;
+}
+
+[data-theme="lego"] .project-card {
+  margin-top: 10px;
+  padding-top: 1.4rem;
+  background: #ffe400;
+}
+
+[data-theme="lego"] .featured-grid .project-card {
+  background: #e3000b;
+  color: #fff;
+}
+
+[data-theme="lego"] .featured-grid .project-card .card-tagline,
+[data-theme="lego"] .featured-grid .project-card .card-description,
+[data-theme="lego"] .featured-grid .project-card .card-meta {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="lego"] .featured-grid .project-card .stack-tag {
+  background: #fff;
+  color: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+[data-theme="lego"] .featured-grid .project-card::before {
+  display: none;
+}
+
+[data-theme="lego"] .project-card:nth-child(3n + 2) {
+  background: #0055a5;
+  color: #fff;
+}
+
+[data-theme="lego"] .project-card:nth-child(3n + 2) .card-tagline,
+[data-theme="lego"] .project-card:nth-child(3n + 2) .card-description,
+[data-theme="lego"] .project-card:nth-child(3n + 2) .card-meta {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="lego"] .project-card:nth-child(3n + 2) .stack-tag {
+  background: #fff;
+  color: #1a1a1a;
+}
+
+[data-theme="lego"] .project-card:nth-child(3n) {
+  background: #00af4d;
+}
+
+[data-theme="lego"] .project-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="lego"] .stat-pill:nth-child(1) { background: #ffe400; }
+[data-theme="lego"] .stat-pill:nth-child(2) { background: #e3000b; color: #fff; }
+[data-theme="lego"] .stat-pill:nth-child(2) .stat-value,
+[data-theme="lego"] .stat-pill:nth-child(2) .stat-label { color: #fff; }
+[data-theme="lego"] .stat-pill:nth-child(3) { background: #0055a5; color: #fff; }
+[data-theme="lego"] .stat-pill:nth-child(3) .stat-value,
+[data-theme="lego"] .stat-pill:nth-child(3) .stat-label { color: #fff; }
+[data-theme="lego"] .stat-pill:nth-child(4) { background: #00af4d; }
+
+[data-theme="lego"] .stat-value {
+  color: var(--text);
+}
+
+[data-theme="lego"] .filter-btn {
+  background: #fff;
+  font-weight: 700;
+}
+
+[data-theme="lego"] .filter-btn.active {
+  background: #e3000b;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+
+[data-theme="lego"] .badge {
+  border: 2px solid #1a1a1a;
+  font-weight: 700;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+[data-theme="lego"] .badge-status-active {
+  background: #00af4d;
+  color: #fff;
+}
+
+[data-theme="lego"] .link-btn--github { background: #fff; color: #1a1a1a; }
+[data-theme="lego"] .link-btn--pages { background: #00af4d; color: #fff; }
+[data-theme="lego"] .link-btn--itch { background: #e3000b; color: #fff; }
+[data-theme="lego"] .link-btn--vercel { background: #1a1a1a; color: #fff; }
+[data-theme="lego"] .link-btn--local { background: #0055a5; color: #fff; }
+[data-theme="lego"] .link-btn--download { background: #e3000b; color: #fff; border-color: #1a1a1a; }
+
+[data-theme="lego"] .theme-toggle__thumb {
+  border-radius: 2px;
 }
 
 @media (max-width: 600px) {
