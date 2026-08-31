@@ -45,6 +45,24 @@
       }
     },
     {
+      "id": "clean-toilets",
+      "name": "Clean Toilets",
+      "tagline": "London toilets with cleanliness ratings",
+      "description": "Find toilets in London with cleanliness ratings and paid or free info. Search is public; sign in to rate a toilet or add one the map is missing.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Next.js", "React", "Leaflet", "Supabase"],
+      "topics": ["maps", "london", "openstreetmap", "web-app"],
+      "updated": "2026-08-31",
+      "links": {
+        "github": "https://github.com/pfaustino/clean-toilets",
+        "githubPages": null,
+        "itch": null,
+        "vercel": "https://clean-toilets.vercel.app/"
+      }
+    },
+    {
       "id": "world-information",
       "name": "World Information",
       "tagline": "Public data, told as lives",
