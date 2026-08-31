@@ -99,6 +99,24 @@
       }
     },
     {
+      "id": "human-achievements",
+      "name": "Human Achievements",
+      "tagline": "Timeline of invention across deep time",
+      "description": "An interactive timeline of human invention from about 3.3 million years ago to today. Deep prehistory is compressed and the modern era expands, so the acceleration of technology is visible — built from Wikipedia’s historic inventions timeline.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite"],
+      "topics": ["history", "inventions", "timeline", "visualization", "wikipedia"],
+      "updated": "2026-08-31",
+      "links": {
+        "github": "https://github.com/pfaustino/human-achievements",
+        "githubPages": "https://pfaustino.github.io/human-achievements/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "tower-of-power",
       "name": "Tower of Power",
       "tagline": "3D crystal tower defense",
