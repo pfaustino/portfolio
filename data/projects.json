@@ -27,6 +27,25 @@
       }
     },
     {
+      "id": "desktop-visualizer",
+      "name": "Desktop Visualizer",
+      "tagline": "Floating Windows audio orb",
+      "description": "A floating desktop orb that reacts to whatever is playing on the machine. Right-click to switch animation models — Helios, Nimbus, Aegis, Kepler, Volt, and Prism — with WASAPI loopback for system audio.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Electron", "Three.js", "Vite"],
+      "topics": ["audio", "visualizer", "desktop", "electron", "windows"],
+      "updated": "2026-09-01",
+      "links": {
+        "github": "https://github.com/pfaustino/desktop-visualizer",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null,
+        "download": "https://github.com/pfaustino/desktop-visualizer/releases/tag/v0.1.0"
+      }
+    },
+    {
       "id": "CityScope",
       "name": "CityScope",
       "tagline": "Civic data for Burbank, CA",
