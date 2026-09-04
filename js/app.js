@@ -333,12 +333,19 @@ function setupThemeToggle() {
   setupStylesCallout(btn);
 }
 
-const CALLOUT_KEY = "portfolio-styles-callout-dismissed";
+const CALLOUT_KEY = "portfolio-styles-bubble-v1";
 
 function setupStylesCallout(themeBtn) {
   const callout = document.getElementById("styles-callout");
   const dismissBtn = document.getElementById("styles-callout-dismiss");
   if (!callout || !dismissBtn) return;
+
+  // Clear the old banner dismiss flag so the bubble can appear.
+  try {
+    localStorage.removeItem("portfolio-styles-callout-dismissed");
+  } catch (_) {
+    /* ignore */
+  }
 
   let dismissed = false;
   try {
@@ -353,7 +360,8 @@ function setupStylesCallout(themeBtn) {
 
   callout.hidden = false;
   callout.addEventListener("click", (event) => {
-    if ((event.target).closest?.(".styles-bubble__dismiss")) return;
+    const target = event.target;
+    if (target instanceof Element && target.closest(".styles-bubble__dismiss")) return;
     themeBtn.click();
     themeBtn.focus({ preventScroll: true });
   });
