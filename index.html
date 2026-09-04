@@ -32,15 +32,22 @@
         <p class="brand-bio" id="owner-bio">I build 3D browser games, interactive data stories, and Windows desktop apps.</p>
       </div>
       <div class="header-actions">
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cycle design theme" title="Next theme">
-          <span class="theme-toggle__track" aria-hidden="true">
-            <span class="theme-toggle__thumb" id="theme-toggle-thumb"></span>
-          </span>
-          <span class="theme-toggle__copy">
-            <span class="theme-toggle__hint">Style</span>
-            <span class="theme-toggle__label" id="theme-toggle-label">Midnight</span>
-          </span>
-        </button>
+        <div class="theme-toggle-wrap">
+          <div class="styles-bubble" id="styles-callout" role="status" aria-label="Try design styles">
+            <p class="styles-bubble__text">Try <strong>Styles</strong> — the best part</p>
+            <button type="button" class="styles-bubble__dismiss" id="styles-callout-dismiss" aria-label="Dismiss tip">×</button>
+            <span class="styles-bubble__tail" aria-hidden="true"></span>
+          </div>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cycle design theme" title="Next theme">
+            <span class="theme-toggle__track" aria-hidden="true">
+              <span class="theme-toggle__thumb" id="theme-toggle-thumb"></span>
+            </span>
+            <span class="theme-toggle__copy">
+              <span class="theme-toggle__hint">Style</span>
+              <span class="theme-toggle__label" id="theme-toggle-label">Midnight</span>
+            </span>
+          </button>
+        </div>
         <nav class="header-links" aria-label="External profiles">
           <a href="https://github.com/pfaustino" class="header-link" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -54,19 +61,6 @@
       </div>
     </div>
   </header>
-
-  <aside class="styles-callout" id="styles-callout" aria-label="Try design styles">
-    <div class="container styles-callout__inner">
-      <p class="styles-callout__text">
-        <span class="styles-callout__kicker">Best part</span>
-        Hit <strong>Style</strong> to remix the whole page — Brutal, Aero, Glass, Y2K, Clay, Terminal, Lego, and more.
-      </p>
-      <div class="styles-callout__actions">
-        <button type="button" class="styles-callout__try" id="styles-callout-try">Try Styles</button>
-        <button type="button" class="styles-callout__dismiss" id="styles-callout-dismiss" aria-label="Dismiss styles tip">Dismiss</button>
-      </div>
-    </div>
-  </aside>
 
   <main class="container">
     <section class="stats-bar" id="stats-bar" aria-label="Portfolio summary"></section>

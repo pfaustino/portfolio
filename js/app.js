@@ -337,9 +337,8 @@ const CALLOUT_KEY = "portfolio-styles-callout-dismissed";
 
 function setupStylesCallout(themeBtn) {
   const callout = document.getElementById("styles-callout");
-  const tryBtn = document.getElementById("styles-callout-try");
   const dismissBtn = document.getElementById("styles-callout-dismiss");
-  if (!callout || !tryBtn || !dismissBtn) return;
+  if (!callout || !dismissBtn) return;
 
   let dismissed = false;
   try {
@@ -353,20 +352,24 @@ function setupStylesCallout(themeBtn) {
   }
 
   callout.hidden = false;
-  tryBtn.addEventListener("click", () => {
+  callout.addEventListener("click", (event) => {
+    if ((event.target).closest?.(".styles-bubble__dismiss")) return;
     themeBtn.click();
     themeBtn.focus({ preventScroll: true });
   });
-  dismissBtn.addEventListener("click", () => dismissStylesCallout(true));
+  dismissBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    dismissStylesCallout(true);
+  });
 }
 
 function dismissStylesCallout(persist) {
   const callout = document.getElementById("styles-callout");
   if (callout) {
-    callout.classList.add("styles-callout--gone");
+    callout.classList.add("styles-bubble--gone");
     window.setTimeout(() => {
       callout.hidden = true;
-    }, 280);
+    }, 220);
   }
   if (!persist) return;
   try {
