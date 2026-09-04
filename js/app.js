@@ -328,7 +328,52 @@ function setupThemeToggle() {
   if (!btn) return;
   btn.addEventListener("click", () => {
     applyTheme(nextTheme(getTheme()));
+    dismissStylesCallout(true);
   });
+  setupStylesCallout(btn);
+}
+
+const CALLOUT_KEY = "portfolio-styles-callout-dismissed";
+
+function setupStylesCallout(themeBtn) {
+  const callout = document.getElementById("styles-callout");
+  const tryBtn = document.getElementById("styles-callout-try");
+  const dismissBtn = document.getElementById("styles-callout-dismiss");
+  if (!callout || !tryBtn || !dismissBtn) return;
+
+  let dismissed = false;
+  try {
+    dismissed = localStorage.getItem(CALLOUT_KEY) === "1";
+  } catch (_) {
+    dismissed = false;
+  }
+  if (dismissed) {
+    callout.hidden = true;
+    return;
+  }
+
+  callout.hidden = false;
+  tryBtn.addEventListener("click", () => {
+    themeBtn.click();
+    themeBtn.focus({ preventScroll: true });
+  });
+  dismissBtn.addEventListener("click", () => dismissStylesCallout(true));
+}
+
+function dismissStylesCallout(persist) {
+  const callout = document.getElementById("styles-callout");
+  if (callout) {
+    callout.classList.add("styles-callout--gone");
+    window.setTimeout(() => {
+      callout.hidden = true;
+    }, 280);
+  }
+  if (!persist) return;
+  try {
+    localStorage.setItem(CALLOUT_KEY, "1");
+  } catch (_) {
+    /* ignore */
+  }
 }
 
 init();
