@@ -60,7 +60,8 @@
         "github": "https://github.com/pfaustino/karaoke",
         "githubPages": null,
         "itch": null,
-        "vercel": null
+        "vercel": null,
+        "download": "https://github.com/pfaustino/karaoke/releases/latest/download/karaoke-booth.exe"
       }
     },
     {
