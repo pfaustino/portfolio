@@ -46,6 +46,24 @@
       }
     },
     {
+      "id": "karaoke",
+      "name": "Karaoke Booth",
+      "tagline": "Live voice booth with WASAPI effects",
+      "description": "Amplify your mic, autotune, and add character effects — alien, chipmunk, demon, robot, telephone, chorus, radio — plus reverb and echo. Native Windows exe for lower latency; Discord via Stereo Mix. Browser demo included.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["Rust", "WASAPI", "egui", "TypeScript", "Vite"],
+      "topics": ["karaoke", "audio", "voice", "desktop", "windows"],
+      "updated": "2026-09-05",
+      "links": {
+        "github": "https://github.com/pfaustino/karaoke",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "CityScope",
       "name": "CityScope",
       "tagline": "Civic data for Burbank, CA",
