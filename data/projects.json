@@ -176,7 +176,7 @@
       "id": "zombieshooter",
       "name": "Zombie Shooter",
       "tagline": "WebGPU city FPS",
-      "description": "Survive undead waves in a sprawling low-poly city. Switch guns, loot the streets, steal a ride, and clear hordes — a WebGPU port of 3dfps on the Particle Realms engine.",
+      "description": "Survive undead waves in a sprawling low-poly city. Switch guns, loot the streets, steal a ride, and run zombies down — a WebGPU port of 3dfps on the Particle Realms engine.",
       "category": "game",
       "status": "active",
       "featured": true,
