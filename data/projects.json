@@ -173,6 +173,24 @@
       }
     },
     {
+      "id": "zombieshooter",
+      "name": "Zombie Shooter",
+      "tagline": "WebGPU city FPS",
+      "description": "Survive undead waves in a sprawling low-poly city. Switch guns, loot the streets, steal a ride, and clear hordes — a WebGPU port of 3dfps on the Particle Realms engine.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "WebGPU"],
+      "topics": ["fps", "zombie", "browser-game", "webgpu"],
+      "updated": "2026-09-06",
+      "links": {
+        "github": "https://github.com/pfaustino/zombieshooter",
+        "githubPages": "https://pfaustino.github.io/zombieshooter/",
+        "itch": "https://pfaustino.itch.io/zombie-shooter",
+        "vercel": null
+      }
+    },
+    {
       "id": "tower-of-power",
       "name": "Tower of Power",
       "tagline": "3D crystal tower defense",
