@@ -8,6 +8,25 @@
   },
   "projects": [
     {
+      "id": "MyLittleSong",
+      "name": "MyLittleSong",
+      "tagline": "A song that sounds like your family",
+      "description": "Parents enter a few details about their child, pick an occasion and a genre, and get a personal song they can play, keep, and send as a gift.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "private": true,
+      "stack": ["TypeScript", "Next.js", "React"],
+      "topics": ["music", "family", "web-app", "ai"],
+      "updated": "2026-09-08",
+      "links": {
+        "github": "https://github.com/pfaustino/MyLittleSong",
+        "githubPages": null,
+        "itch": null,
+        "vercel": "https://www.mylittlesong.app"
+      }
+    },
+    {
       "id": "StreamFinder",
       "name": "StreamFinder",
       "tagline": "Searchable IPTV browser",
