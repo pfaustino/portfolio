@@ -102,6 +102,24 @@
       }
     },
     {
+      "id": "burbank-votes",
+      "name": "Burbank Votes",
+      "tagline": "Nonpartisan 2026 voter guide",
+      "description": "Living voter guide for Burbank’s November 3, 2026 election — council issue map, sourced yes/no chart, candidate statements, local measures, and how to vote. Empty cells stay empty until there is a public record.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite"],
+      "topics": ["civic", "voter-guide", "burbank", "election"],
+      "updated": "2026-09-09",
+      "links": {
+        "github": "https://github.com/pfaustino/burbank-votes",
+        "githubPages": "https://pfaustino.github.io/burbank-votes/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "clean-toilets",
       "name": "Clean Toilets",
       "tagline": "London toilets with cleanliness ratings",
