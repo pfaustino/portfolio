@@ -228,6 +228,25 @@
       }
     },
     {
+      "id": "paris-catacombs",
+      "name": "Paris Catacombs",
+      "tagline": "Ossuary-inspired FPS walk",
+      "description": "A respectful, fictional first-person descent through limestone galleries lined with bone. Flashlight, plaques, minimap, and a guided route — original procedural geometry, not a real scan or access map.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite", "Three.js"],
+      "topics": ["fps", "exploration", "browser-game", "threejs", "atmosphere"],
+      "updated": "2026-09-14",
+      "devPort": 5173,
+      "links": {
+        "github": "https://github.com/pfaustino/paris-catacombs",
+        "githubPages": "https://pfaustino.github.io/paris-catacombs/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "tower-of-power",
       "name": "Tower of Power",
       "tagline": "3D crystal tower defense",
