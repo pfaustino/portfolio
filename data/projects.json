@@ -102,6 +102,24 @@
       }
     },
     {
+      "id": "burbank-police-incidents",
+      "name": "Burbank Police Incidents",
+      "tagline": "Calls-for-service reports and map",
+      "description": "Five reports from Burbank PD’s public dispatch log (June 2024–September 2026): volume, timing, call types, outcomes, and a filterable map of 149k incidents.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["JavaScript", "Vite", "Leaflet", "Chart.js"],
+      "topics": ["civic-data", "burbank", "open-data", "maps", "police"],
+      "updated": "2026-09-16",
+      "links": {
+        "github": "https://github.com/pfaustino/burbank-police-incidents",
+        "githubPages": "https://pfaustino.github.io/burbank-police-incidents/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "burbank-votes",
       "name": "Burbank Votes",
       "tagline": "Nonpartisan 2026 voter guide",
