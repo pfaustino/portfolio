@@ -27,6 +27,25 @@
       }
     },
     {
+      "id": "pub-quiz",
+      "name": "The Snug",
+      "tagline": "Live digital pub quiz",
+      "description": "Quizmasters deal licensed OpenTDB rounds, write private ones, then open a live floor. Players join on their phones with a QR; the host machine is the WebRTC hub, with gameshow player screens and a host view of every seat.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "private": true,
+      "stack": ["TypeScript", "Next.js", "React"],
+      "topics": ["pub-quiz", "trivia", "webrtc", "web-app"],
+      "updated": "2026-09-19",
+      "links": {
+        "github": "https://github.com/pfaustino/pub-quiz",
+        "githubPages": null,
+        "itch": null,
+        "vercel": "https://pub-quiz-dusky.vercel.app"
+      }
+    },
+    {
       "id": "StreamFinder",
       "name": "StreamFinder",
       "tagline": "Searchable IPTV browser",
