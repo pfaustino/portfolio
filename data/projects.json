@@ -229,6 +229,24 @@
       }
     },
     {
+      "id": "calamities",
+      "name": "Calamity Atlas",
+      "tagline": "Globe of named famines, epidemics, and disasters",
+      "description": "A millennia calamity globe in the same interaction model as Death Atlas: Wikipedia named famines, epidemics, floods, and disasters with a details card, UK male narration, and a timeline you can run forward or backward. Distinct from World Disasters’ modern instrumented hazard feeds.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["history", "famines", "epidemics", "disasters", "visualization", "threejs", "globe"],
+      "updated": "2026-09-20",
+      "links": {
+        "github": "https://github.com/pfaustino/calamities",
+        "githubPages": "https://pfaustino.github.io/calamities/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "human-achievements",
       "name": "Human Achievements",
       "tagline": "Timeline of invention across deep time",
