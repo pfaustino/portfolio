@@ -422,7 +422,7 @@
       "description": "Drive, dive, and survive in a chaotic low-poly first-person shooter. Endless enemy waves in the browser with Three.js.",
       "category": "game",
       "status": "active",
-      "featured": true,
+      "featured": false,
       "stack": ["JavaScript", "Three.js"],
       "topics": ["fps", "browser-game", "threejs"],
       "updated": "2026-06-23",
