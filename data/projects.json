@@ -8,6 +8,24 @@
   },
   "projects": [
     {
+      "id": "epstein-files",
+      "name": "Epstein Network Explorer",
+      "tagline": "Multi-source investigative knowledge graph",
+      "description": "Interactive knowledge graph and multi-source investigative suite exploring the Epstein files across four dimensions: 2D force-directed knowledge graph of 186 core dossiers, 2,327-contact FBI Black Book with A–Z indexing, 559 pilot flight manifests with passenger frequency leaderboards, and the 187 unsealed court Does from Giuffre v. Maxwell.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "React", "Tailwind CSS", "Python"],
+      "topics": ["knowledge-graph", "investigative-journalism", "osint", "open-data", "data-visualization"],
+      "updated": "2026-09-21",
+      "links": {
+        "github": "https://github.com/pfaustino/epstein-files",
+        "githubPages": "https://pfaustino.github.io/epstein-files/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "MyLittleSong",
       "name": "MyLittleSong",
       "tagline": "A song that sounds like your family",
