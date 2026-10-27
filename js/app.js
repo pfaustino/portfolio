@@ -5,6 +5,7 @@ const ICONS = {
   vercel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 19.5h20L12 2z"/></svg>`,
   download: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L11 13.59V4a1 1 0 0 1 1-1zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>`,
   local: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H4V6zm2 2v6h12V8H6zm2 10h8v2H8v-2z"/></svg>`,
+  railway: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>`,
 };
 
 const CATEGORY_LABELS = {
@@ -116,7 +117,7 @@ async function loadData() {
 
 function renderStats(projects) {
   const playable = projects.filter(
-    (p) => p.links.githubPages || p.links.itch || p.links.vercel || p.links.download
+    (p) => p.links.githubPages || p.links.itch || p.links.vercel || p.links.download || p.links.railway
   ).length;
 
   const stats = [
@@ -185,6 +186,7 @@ function renderCard(project) {
       <p class="card-meta">Updated ${updated}</p>
       <div class="card-links">
         ${project.links.download ? renderLink("download", project.links.download, "Download") : ""}
+        ${project.links.railway ? renderLink("railway", project.links.railway, "Play") : ""}
         ${renderLink("github", project.links.github, "GitHub")}
         ${renderLink("pages", project.links.githubPages, "Pages")}
         ${renderLink("itch", project.links.itch, "itch.io")}

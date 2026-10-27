@@ -1077,6 +1077,9 @@ body {
 .link-btn--github { color: var(--github); background: #21262d; }
 .link-btn--github:hover { border-color: #484f58; }
 
+.link-btn--railway { color: var(--accent-secondary); background: #a78bfa18; }
+.link-btn--railway:hover { border-color: var(--accent-secondary); }
+
 .link-btn--pages { color: var(--pages); background: #3fb95012; }
 .link-btn--pages:hover { border-color: var(--pages); }
 

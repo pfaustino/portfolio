@@ -301,6 +301,26 @@
       }
     },
     {
+      "id": "burbank-walkabout",
+      "name": "Burbank Walkabout",
+      "tagline": "Walk downtown and talk to the block",
+      "description": "A downtown Burbank slice you can walk, drive, and ride. People on the sidewalk have lives and moods, and they answer when you talk to them. Other players on the same street show up beside you.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["walking-sim", "browser-game", "threejs", "burbank"],
+      "updated": "2026-10-27",
+      "devPort": 5174,
+      "links": {
+        "github": "https://github.com/pfaustino/burbank-walkabout",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null,
+        "railway": "https://burbank-walkabout-production.up.railway.app"
+      }
+    },
+    {
       "id": "zombieshooter",
       "name": "Zombie Shooter",
       "tagline": "WebGPU city FPS",
