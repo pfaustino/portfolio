@@ -8,6 +8,47 @@
   },
   "projects": [
     {
+      "id": "world-of-wardom",
+      "name": "World of Wardom",
+      "readmeBranch": "master",
+      "tagline": "Browser 3D RPG thin slice",
+      "description": "Walk procedural hills and fight with characters pruned from wow.export. Terrain, water, and WoW-style ground hazards, with Ironfang as a bare body and Stormshroud as a separate outfit.",
+      "category": "game",
+      "status": "active",
+      "featured": true,
+      "private": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["rpg", "browser-game", "threejs", "wow"],
+      "updated": "2026-11-02",
+      "devPort": 5173,
+      "links": {
+        "github": "https://github.com/pfaustino/world-of-wardom",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
+      "id": "animation-studio",
+      "name": "Wardom Studio",
+      "tagline": "Play a model, then a clip",
+      "description": "Pick a World of Wardom character or a wow.export model, play any clip, and overlay outfit files on the bare body. Export and import more glTF from the same screen.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "private": true,
+      "stack": ["TypeScript", "Vite", "Three.js"],
+      "topics": ["animation", "gltf", "threejs", "wow"],
+      "updated": "2026-11-02",
+      "devPort": 5180,
+      "links": {
+        "github": "https://github.com/pfaustino/animation-studio",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "epstein-files",
       "name": "Epstein Network Explorer",
       "tagline": "Multi-source investigative knowledge graph",

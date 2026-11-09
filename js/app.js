@@ -6,6 +6,8 @@ const ICONS = {
   download: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L11 13.59V4a1 1 0 0 1 1-1zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>`,
   local: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H4V6zm2 2v6h12V8H6zm2 10h8v2H8v-2z"/></svg>`,
   railway: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>`,
+  readme: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 12h8v1.6H8V12zm0 3.4h8V17H8v-1.6z"/></svg>`,
+  chevron: `<svg class="readme-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.3 5.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 1 1-1.4-1.4l5.3-5.3-5.3-5.3a1 1 0 0 1 0-1.4z"/></svg>`,
 };
 
 const CATEGORY_LABELS = {
@@ -104,9 +106,258 @@ function scheduleLocalDevProbe() {
   }, 8000);
 }
 
+/** @type {Record<string, string>} id -> rendered readme html (or "" when unavailable) */
+const readmeCache = {};
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function isTableSeparator(line) {
+  return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line.trim());
+}
+
+function splitTableRow(line) {
+  let row = line.trim();
+  if (row.startsWith("|")) row = row.slice(1);
+  if (row.endsWith("|")) row = row.slice(0, -1);
+  return row.split("|").map((cell) => cell.trim());
+}
+
+function readmeLinkBase(project, sourceUrl) {
+  const raw = String(sourceUrl || "").match(
+    /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.*)$/
+  );
+  if (raw) {
+    const dir = raw[4].includes("/") ? raw[4].slice(0, raw[4].lastIndexOf("/") + 1) : "";
+    return `https://github.com/${raw[1]}/${raw[2]}/blob/${raw[3]}/${dir}`;
+  }
+  const gh = project.links?.github?.match(/github\.com\/([^/]+)\/([^/#?]+)/i);
+  if (!gh) return "";
+  const branch = project.readmeBranch || "main";
+  return `https://github.com/${gh[1]}/${gh[2]}/blob/${branch}/`;
+}
+
+function resolveReadmeHref(href, base) {
+  if (!base || /^(https?:|mailto:|#|\/\/)/i.test(href)) return href;
+  return `${base}${href.replace(/^\.\//, "")}`;
+}
+
+/** Tiny markdown renderer — enough for repo READMEs, no dependencies. */
+function markdownToHtml(md, linkBase) {
+  const codeBlocks = [];
+  let text = md.replace(/\r\n/g, "\n").replace(/```([a-zA-Z0-9]*)\n?([\s\S]*?)```/g, (_m, lang, code) => {
+    const cls = lang ? ` class="language-${escapeHtml(lang)}"` : "";
+    codeBlocks.push(`<pre class="readme-pre"><code${cls}>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`);
+    return `\u0000CODEBLOCK${codeBlocks.length - 1}\u0000`;
+  });
+
+  text = escapeHtml(text);
+
+  const lines = text.split(/\r?\n/);
+  const out = [];
+  let listType = null;
+  let inParagraph = false;
+
+  const closeList = () => {
+    if (listType) {
+      out.push(`</${listType}>`);
+      listType = null;
+    }
+  };
+  const closeParagraph = () => {
+    if (inParagraph) {
+      out.push("</p>");
+      inParagraph = false;
+    }
+  };
+
+  const inline = (s) =>
+    s
+      .replace(/!\[([^\]]*)\]\(([^)\s]+)[^)]*\)/g, '<span class="readme-img">🖼 $1</span>')
+      .replace(/\[([^\]]+)\]\(([^)\s]+)[^)]*\)/g, (_m, label, href) => {
+        const url = resolveReadmeHref(href, linkBase);
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      })
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|\W)\*([^*]+)\*/g, "$1<em>$2</em>")
+      .replace(/(^|\W)_([^_]+)_/g, "$1<em>$2</em>");
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].replace(/\s+$/, "");
+
+    if (!line.trim()) {
+      closeParagraph();
+      closeList();
+      continue;
+    }
+
+    const block = line.match(/^\u0000CODEBLOCK(\d+)\u0000$/);
+    if (block) {
+      closeParagraph();
+      closeList();
+      out.push(codeBlocks[Number(block[1])]);
+      continue;
+    }
+
+    const heading = line.match(/^(#{1,6})\s+(.*)$/);
+    if (heading) {
+      closeParagraph();
+      closeList();
+      const level = Math.min(heading[1].length + 3, 6);
+      out.push(`<h${level} class="readme-h">${inline(heading[2].trim())}</h${level}>`);
+      continue;
+    }
+
+    if (/^\s*([-*+]|\d+\.)\s+/.test(line)) {
+      closeParagraph();
+      const want = /^\s*\d+\./.test(line) ? "ol" : "ul";
+      if (listType !== want) {
+        closeList();
+        out.push(`<${want} class="readme-list">`);
+        listType = want;
+      }
+      out.push(`<li>${inline(line.replace(/^\s*([-*+]|\d+\.)\s+/, ""))}</li>`);
+      continue;
+    }
+
+    if (/^\s*>\s?/.test(line)) {
+      closeParagraph();
+      closeList();
+      out.push(`<blockquote class="readme-quote">${inline(line.replace(/^\s*>\s?/, ""))}</blockquote>`);
+      continue;
+    }
+
+    if (/^\s*(---|\*\*\*|___)\s*$/.test(line)) {
+      closeParagraph();
+      closeList();
+      out.push('<hr class="readme-hr" />');
+      continue;
+    }
+
+    if (line.trim().startsWith("|") && i + 1 < lines.length && isTableSeparator(lines[i + 1])) {
+      closeParagraph();
+      closeList();
+      const header = splitTableRow(line);
+      i += 2;
+      const body = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        if (!isTableSeparator(lines[i])) body.push(splitTableRow(lines[i]));
+        i += 1;
+      }
+      i -= 1;
+      const headHtml = header.map((cell) => `<th>${inline(cell)}</th>`).join("");
+      const bodyHtml = body
+        .map((row) => `<tr>${row.map((cell) => `<td>${inline(cell)}</td>`).join("")}</tr>`)
+        .join("");
+      out.push(`<table class="readme-table"><thead><tr>${headHtml}</tr></thead><tbody>${bodyHtml}</tbody></table>`);
+      continue;
+    }
+
+    closeList();
+    if (!inParagraph) {
+      out.push("<p>");
+      inParagraph = true;
+    } else {
+      out.push(" ");
+    }
+    out.push(inline(line.trim()));
+  }
+
+  closeParagraph();
+  closeList();
+  return out.join("");
+}
+
+function slugify(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+/** Candidate locations for a project's README, most specific first. */
+function readmeCandidates(project) {
+  const sources = [];
+  const localName = project.readme || `${slugify(project.id)}.md`;
+  sources.push(new URL(`../data/readmes/${localName}`, import.meta.url).href);
+
+  const gh = project.links?.github;
+  if (gh) {
+    const m = gh.match(/github\.com\/([^/]+)\/([^/]+)/i);
+    if (m) {
+      const [, owner, repo] = m;
+      const branch = project.readmeBranch || "main";
+      const path = project.readmePath || "README.md";
+      sources.push(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`);
+      sources.push(`https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`);
+    }
+  }
+  return sources;
+}
+
+async function fetchReadme(project) {
+  if (project.id in readmeCache) return readmeCache[project.id];
+
+  for (const url of readmeCandidates(project)) {
+    try {
+      const res = await fetch(url, { cache: "no-cache" });
+      if (!res.ok) continue;
+      const md = await res.text();
+      if (!md.trim()) continue;
+      readmeCache[project.id] = markdownToHtml(md, readmeLinkBase(project, url));
+      return readmeCache[project.id];
+    } catch {
+      /* try next source */
+    }
+  }
+
+  readmeCache[project.id] = "";
+  return "";
+}
+
+async function toggleReadme(panel, project) {
+  const isOpen = panel.classList.contains("readme-panel--open");
+  const trigger = panel.previousElementSibling;
+
+  if (isOpen) {
+    panel.classList.remove("readme-panel--open");
+    panel.setAttribute("aria-hidden", "true");
+    trigger?.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  panel.classList.add("readme-panel--open");
+  panel.setAttribute("aria-hidden", "false");
+  trigger?.setAttribute("aria-expanded", "true");
+
+  if (panel.dataset.loaded === "1") return;
+
+  const body = panel.querySelector(".readme-body");
+  body.innerHTML = '<p class="readme-note">Loading README…</p>';
+
+  const html = await fetchReadme(project);
+  panel.dataset.loaded = "1";
+
+  if (!html) {
+    const gh = project.links?.github;
+    body.innerHTML = `<p class="readme-note">This project has no README yet.${
+      gh ? ` <a href="${gh}" target="_blank" rel="noopener noreferrer">View the repository</a>.` : ""
+    }</p>`;
+    return;
+  }
+
+  body.innerHTML = html;
+}
+
 let allProjects = [];
 let activeFilter = "all";
 let searchQuery = "";
+let ownerHandle = "pfaustino";
 
 async function loadData() {
   const url = new URL("../data/projects.json", import.meta.url);
@@ -193,6 +444,14 @@ function renderCard(project) {
         ${renderLocalDevLink(project.devPort ?? null, devRepoName(project))}
         ${renderLink("vercel", project.links.vercel, "Vercel")}
       </div>
+      <button class="readme-toggle" type="button" data-readme-toggle
+        aria-expanded="false" aria-controls="readme-${project.id}">
+        ${ICONS.readme}<span>readme.md</span>${ICONS.chevron}
+      </button>
+      <div class="readme-panel" id="readme-${project.id}" data-readme-id="${project.id}"
+        aria-hidden="true" hidden>
+        <div class="readme-body"></div>
+      </div>
     </article>`;
 }
 
@@ -238,6 +497,19 @@ function renderProjects() {
   scheduleLocalDevProbe();
 }
 
+function setupReadmeToggles() {
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-readme-toggle]");
+    if (!trigger) return;
+    const panel = trigger.nextElementSibling;
+    if (!panel || !panel.classList.contains("readme-panel")) return;
+    const id = panel.dataset.readmeId;
+    const project = allProjects.find((p) => p.id === id);
+    if (!project) return;
+    toggleReadme(panel, project);
+  });
+}
+
 function setupFilters() {
   document.getElementById("category-filters").addEventListener("click", (e) => {
     const btn = e.target.closest("[data-filter]");
@@ -266,6 +538,7 @@ async function init() {
 
     renderStats(allProjects);
     setupFilters();
+    setupReadmeToggles();
     renderProjects();
     window.addEventListener("focus", () => refreshLocalDevLinks());
   } catch (err) {
