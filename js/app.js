@@ -455,13 +455,20 @@ function renderCard(project) {
     </article>`;
 }
 
+/** Public play links stay in All, Games, Apps, and Prototypes even when the repo is private. */
+function hasPublicPlayLink(project) {
+  const links = project.links ?? {};
+  return Boolean(links.githubPages || links.itch || links.vercel || links.railway);
+}
+
 function getFilteredProjects() {
   return allProjects.filter((p) => {
     const isPrivate = Boolean(p.private);
+    const hiddenPrivate = isPrivate && !hasPublicPlayLink(p);
     const matchesFilter =
       activeFilter === "private"
         ? isPrivate
-        : !isPrivate && (activeFilter === "all" || p.category === activeFilter);
+        : !hiddenPrivate && (activeFilter === "all" || p.category === activeFilter);
     const q = searchQuery.toLowerCase().trim();
     const matchesSearch =
       !q ||
