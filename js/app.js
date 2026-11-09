@@ -457,7 +457,11 @@ function renderCard(project) {
 
 function getFilteredProjects() {
   return allProjects.filter((p) => {
-    const matchesFilter = activeFilter === "all" || p.category === activeFilter;
+    const isPrivate = Boolean(p.private);
+    const matchesFilter =
+      activeFilter === "private"
+        ? isPrivate
+        : !isPrivate && (activeFilter === "all" || p.category === activeFilter);
     const q = searchQuery.toLowerCase().trim();
     const matchesSearch =
       !q ||
