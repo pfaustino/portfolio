@@ -1,0 +1,13 @@
+---
+description: Commit and push portfolio changes so GitHub Pages updates
+alwaysApply: true
+---
+
+# Publish portfolio changes
+
+When a task changes this portfolio, commit the change and push `main` in the same turn. GitHub Pages deploys from that push. Do this without waiting for a separate publish request.
+
+- Commit only the files for the task.
+- Push `origin` `main` after the commit succeeds.
+- Confirm the Pages deploy, then check the live site for the change.
+- Leave other repositories unpushed unless the user asks to publish those too.
