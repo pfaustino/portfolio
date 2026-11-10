@@ -513,25 +513,6 @@
       }
     },
     {
-      "id": "3dfps",
-      "name": "3D FPS",
-      "tagline": "Low-poly browser shooter",
-      "description": "Drive, dive, and survive in a chaotic low-poly first-person shooter. Endless enemy waves in the browser with Three.js.",
-      "category": "game",
-      "status": "active",
-      "featured": false,
-      "stack": ["JavaScript", "Three.js"],
-      "topics": ["fps", "browser-game", "threejs"],
-      "updated": "2026-06-23",
-      "devPort": 5180,
-      "links": {
-        "github": "https://github.com/pfaustino/3dfps",
-        "githubPages": "https://pfaustino.github.io/3dfps/",
-        "itch": "https://pfaustino.itch.io/zonkify",
-        "vercel": null
-      }
-    },
-    {
       "id": "mining-coins",
       "name": "Mining Coins",
       "tagline": "NiceHash mining dashboard",
