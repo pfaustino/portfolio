@@ -1,11 +1,20 @@
 # Civilization War
 
-Civ-style war sim prototype.
+Inactive civ-style war-sim idea — browser prototype scaffold only.
 
-## Overview
+## Run
 
-An inactive prototype exploring civilization-style war simulation and grand-strategy mechanics in the browser.
+```bash
+npm install
+npm run dev
+```
 
-## Tech / Stack
+Opens Vite on `http://localhost:5179`. The page is a one-line placeholder (`Prototype scaffold — see ARCHITECTURE.md`). There is no playable simulation to run.
 
-- TypeScript
+## Stack
+
+Vite 6 scaffold · plain HTML placeholder · Playwright smoke harness · no game engine, no TypeScript/JS gameplay source in the tree
+
+## Scope / Status
+
+Empty repo: `index.html` stub, `ARCHITECTURE.md` stating no source yet, ADR backlog only. Portfolio marks category prototype and status inactive. Nothing beyond the Vite/docs shell is implemented.
