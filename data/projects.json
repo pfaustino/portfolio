@@ -67,6 +67,24 @@
       }
     },
     {
+      "id": "trump-files",
+      "name": "The Docket",
+      "tagline": "Every accusation against Donald J. Trump",
+      "description": "Interactive docket of every impeachment, criminal case, civil suit, and ballot challenge aimed at Donald J. Trump, with a timeline, the status of each matter, how it has been handled, and how it could end in a conviction. Covers constitutional and emoluments claims, ICE and immigration rights matters, and the Iran war.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "stack": ["HTML", "CSS", "JavaScript"],
+      "topics": ["investigative-journalism", "data-visualization", "timeline", "law", "static-site"],
+      "updated": "2026-11-11",
+      "links": {
+        "github": "https://github.com/pfaustino/trump-files",
+        "githubPages": "https://pfaustino.github.io/trump-files/",
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "MyLittleSong",
       "name": "MyLittleSong",
       "tagline": "A song that sounds like your family",
