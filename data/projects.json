@@ -56,7 +56,6 @@
       "category": "app",
       "status": "active",
       "featured": true,
-      "private": true,
       "stack": ["TypeScript", "Vite", "Three.js", "Node.js"],
       "topics": ["animation", "glb", "threejs", "avatars", "rocketbox"],
       "updated": "2026-11-17",
