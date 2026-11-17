@@ -49,6 +49,26 @@
       }
     },
     {
+      "id": "Microsoft-Rocketbox-UI",
+      "name": "Rocketbox Studio",
+      "tagline": "3D avatar & animation studio for Microsoft Rocketbox",
+      "description": "Browser studio for the 115 characters in Microsoft-Rocketbox. Drag a character onto the stage, play shared body clips, preview speech and mouth animation, and export a .glb with the mesh and selected clips.",
+      "category": "app",
+      "status": "active",
+      "featured": true,
+      "private": true,
+      "stack": ["TypeScript", "Vite", "Three.js", "Node.js"],
+      "topics": ["animation", "glb", "threejs", "avatars", "rocketbox"],
+      "updated": "2026-11-17",
+      "devPort": 5173,
+      "links": {
+        "github": "https://github.com/pfaustino/Microsoft-Rocketbox-UI",
+        "githubPages": null,
+        "itch": null,
+        "vercel": null
+      }
+    },
+    {
       "id": "epstein-files",
       "name": "Epstein Network Explorer",
       "tagline": "Multi-source investigative knowledge graph",
