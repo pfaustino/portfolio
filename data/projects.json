@@ -52,7 +52,7 @@
       "id": "Microsoft-Rocketbox-UI",
       "name": "Rocketbox Studio",
       "tagline": "3D avatar & animation studio for Microsoft Rocketbox",
-      "description": "Browser studio for the 115 characters in Microsoft-Rocketbox. Drag a character onto the stage, play shared body clips, preview speech and mouth animation, and export a .glb with the mesh and selected clips.",
+      "description": "Browser studio for the 115 characters in Microsoft-Rocketbox. Drag a character onto the stage, play shared body clips, preview speech and mouth animation, and export a .glb with the mesh and selected clips. Also imports GLB for mesh separations and animations.",
       "category": "app",
       "status": "active",
       "featured": true,
